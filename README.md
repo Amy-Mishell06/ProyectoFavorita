@@ -157,7 +157,7 @@ Para habilitar la conexión remota desde Power BI, se configuró:
 - `postgresql.conf` → `listen_addresses = '*'`
 - `pg_hba.conf` → `host all all 0.0.0.0/0 scram-sha-256`
 
-## 📊 Conexión con Power BI
+## Conexión con Power BI
 
 1. Abrir Power BI Desktop → **Obtener datos** → **PostgreSQL database**.
 2. Servidor: `localhost:5432` (o IP de WSL2 si aplica).
@@ -173,7 +173,7 @@ Para habilitar la conexión remota desde Power BI, se configuró:
 | Jonathan Caiza |
 | Anthony Ledesma |
 
-## 📌 Estado del proyecto
+## Estado del proyecto
 
 - [x] Configuración del entorno (Airflow + PostgreSQL + Polars)
 - [x] Carga y diagnóstico inicial de calidad de datos
