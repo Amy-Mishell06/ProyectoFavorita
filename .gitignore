@@ -1,0 +1,9 @@
+.vscode/
+venv/
+airflow/logs/
+airflow/*.pid
+__pycache__/
+*.py[cod]
+*.log
+*.parquet
+*.csv
