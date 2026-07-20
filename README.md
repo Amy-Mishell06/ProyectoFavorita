@@ -28,34 +28,6 @@ Datasets utilizados:
 | `oil.csv` | Precio diario del petróleo (WTI) |
 | `holidays_events.csv` | Feriados y eventos especiales en Ecuador |
 
-##  Arquitectura del pipeline
-
-```
-CSV crudos (data/)
-      │
-      ▼
-[Tarea 1] Carga inicial (modo Lazy con Polars)
-      │
-      ▼
-[Tarea 2] EDA inicial — diagnóstico de calidad (nulos, duplicados, rangos)
-      │
-      ▼
-[Tarea 3] Limpieza e imputación
-      │   • Eliminación de duplicados
-      │   • Interpolación lineal de precios de petróleo
-      │   • Imputación de transacciones nulas con mediana
-      ▼
-[Tarea 4] Consolidación — joins secuenciales en dataset único
-      │
-      ▼
-[Tarea 5] EDA profundo — análisis de negocio completo
-      │
-      ▼
-[Tarea 6] Exportación a PostgreSQL (vía COPY)
-      │
-      ▼
-Power BI (conexión en tiempo real / DirectQuery)
-```
 
 Todo el flujo es orquestado mediante un **DAG de Apache Airflow**, que ejecuta las tareas de forma secuencial con manejo de dependencias y reintentos.
 
@@ -67,35 +39,7 @@ Todo el flujo es orquestado mediante un **DAG de Apache Airflow**, que ejecuta l
 4. **Petróleo y economía**: correlación entre el precio del petróleo y las ventas, análisis de la caída del crudo 2015–2016 y su efecto por ciudad.
 5. **Transacciones**: relación transacciones-ventas y cálculo de ticket promedio por tienda.
 
-##  Stack tecnológico
 
-| Componente | Tecnología |
-|---|---|
-| Orquestación | Apache Airflow 2.9.2 |
-| Procesamiento de datos | Polars (modo Lazy) + Pandas (interpolación) |
-| Base de datos | PostgreSQL |
-| Visualización | Power BI (conexión DirectQuery) |
-| Lenguaje | Python 3.11 |
-| Entorno | Ubuntu (WSL2) |
-
-## 📁 Estructura del repositorio
-
-```
-ProyectoFavorita/
-├── airflow/                  # Configuración de Airflow (DAGs, cfg)
-│   └── dags/                 # DAG de orquestación del pipeline
-├── scripts/
-│   ├── carga_y_eda_inicial.py    # Tareas 1-2: carga + diagnóstico de calidad
-│   ├── limpiar_datos.py          # Tarea 3: limpieza e imputación
-│   ├── consolidar.py             # Tarea 4: consolidación en dataset único
-│   ├── Eda_profundo.py           # Tarea 5: análisis de negocio
-│   └── exportar_postgres.py      # Tarea 6: exportación a PostgreSQL
-├── data/                     # CSV crudos y procesados (no versionado)
-├── reports/                  # Reportes de calidad (JSON)
-├── .gitignore
-├── requirements.txt
-└── README.md
-```
 
 > **Nota:** la carpeta `data/` no se versiona en Git por el peso de los archivos (dataset de +3M de registros). Cada integrante debe descargar los CSV originales y colocarlos localmente en `data/` antes de ejecutar el pipeline.
 
@@ -167,9 +111,9 @@ Para habilitar la conexión remota desde Power BI, se configuró:
 
 ##  Equipo
 
-- | AMY DÍAZ  |
-- | JONATHAN CAIZA |
-- | ANTHONY LEDESMA |
+-  AMY DÍAZ  
+-  JONATHAN CAIZA 
+-  ANTHONY LEDESMA 
 
 ## Estado del proyecto
 
