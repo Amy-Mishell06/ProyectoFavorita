@@ -1,6 +1,11 @@
 ## Proyecto de Análisis de Datos — Corporación Favorita
 **Pipeline de datos con Apache Airflow, Polars, PostgreSQL y Power BI**
+---
+##  Equipo
 
+-  AMY DÍAZ  
+-  JONATHAN CAIZA 
+-  ANTHONY LEDESMA 
 ---
 
 ## Descripción general
@@ -109,11 +114,6 @@ Para habilitar la conexión remota desde Power BI, se configuró:
 4. Modo de conectividad: **DirectQuery** (tiempo real).
 5. Seleccionar las tablas `consolidado_final` y las tablas `eda_*` generadas por el análisis profundo.
 
-##  Equipo
-
--  AMY DÍAZ  
--  JONATHAN CAIZA 
--  ANTHONY LEDESMA 
 
 ## Estado del proyecto
 
