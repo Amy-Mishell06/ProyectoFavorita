@@ -167,11 +167,10 @@ Para habilitar la conexión remota desde Power BI, se configuró:
 
 ##  Equipo
 
-| Integrante |
-|---|---|
-| AMY DÍAZ  |
-| Jonathan Caiza |
-| Anthony Ledesma |
+- | Integrante |
+- | AMY DÍAZ  |
+- | Jonathan Caiza |
+- | Anthony Ledesma |
 
 ## Estado del proyecto
 
