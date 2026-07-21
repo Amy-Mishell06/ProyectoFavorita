@@ -129,7 +129,11 @@ carga_y_eda_inicial >> limpiar_datos >> consolidar_datasets >> eda_profundo >> e
 | Filas duplicadas detectadas (todos los archivos) | 0 |
 | Registros en el dataset consolidado final | 3,000,888 |
 | Registros exportados a PostgreSQL | 3,000,888 |
-| Tiempo total de ejecución del pipeline (test local) | ~4 segundos (ejecución con datos ya en caché de Polars) |
+| Total de tareas del DAG | 5 (todas tipo `BashOperator`) |
+| Tiempo real de ejecución del pipeline completo | ~4 segundos (medido en `airflow dags test`, desde la Tarea 1 hasta la Tarea 5) |
+| Estado de la última ejecución | Success (5/5 tareas completadas) |
+
+> **Nota:** la UI de Airflow muestra "Mean Run Duration: 1d02:04:00" para esta corrida, pero ese valor refleja el tiempo transcurrido desde la fecha lógica de ejecución (`data_interval`) hasta el momento de la consulta, no el tiempo real de procesamiento. El tiempo real de ejecución del pipeline, medido directamente en los logs de `airflow dags test`, fue de aproximadamente 4 segundos.
 
 
 
