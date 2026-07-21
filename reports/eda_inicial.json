@@ -1,0 +1,169 @@
+{
+    "train": {
+        "archivo": "train.csv",
+        "total_filas": 3000888,
+        "total_columnas": 6,
+        "filas_duplicadas": 0,
+        "rango_fechas": {
+            "minimo": "2013-01-01",
+            "maximo": "2017-08-15"
+        },
+        "columnas": {
+            "id": {
+                "tipo_dato": "Int64",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "date": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "store_nbr": {
+                "tipo_dato": "Int64",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "family": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "sales": {
+                "tipo_dato": "Float64",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "onpromotion": {
+                "tipo_dato": "Int64",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            }
+        }
+    },
+    "stores": {
+        "archivo": "stores.csv",
+        "total_filas": 54,
+        "total_columnas": 5,
+        "filas_duplicadas": 0,
+        "rango_fechas": null,
+        "columnas": {
+            "store_nbr": {
+                "tipo_dato": "Int64",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "city": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "state": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "type": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "cluster": {
+                "tipo_dato": "Int64",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            }
+        }
+    },
+    "transactions": {
+        "archivo": "transactions.csv",
+        "total_filas": 83488,
+        "total_columnas": 3,
+        "filas_duplicadas": 0,
+        "rango_fechas": {
+            "minimo": "2013-01-01",
+            "maximo": "2017-08-15"
+        },
+        "columnas": {
+            "date": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "store_nbr": {
+                "tipo_dato": "Int64",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "transactions": {
+                "tipo_dato": "Int64",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            }
+        }
+    },
+    "oil": {
+        "archivo": "oil.csv",
+        "total_filas": 1218,
+        "total_columnas": 2,
+        "filas_duplicadas": 0,
+        "rango_fechas": {
+            "minimo": "2013-01-01",
+            "maximo": "2017-08-31"
+        },
+        "columnas": {
+            "date": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "dcoilwtico": {
+                "tipo_dato": "Float64",
+                "nulos_conteo": 43,
+                "nulos_porcentaje": 3.53
+            }
+        }
+    },
+    "holidays_events": {
+        "archivo": "holidays_events.csv",
+        "total_filas": 350,
+        "total_columnas": 6,
+        "filas_duplicadas": 0,
+        "rango_fechas": {
+            "minimo": "2012-03-02",
+            "maximo": "2017-12-26"
+        },
+        "columnas": {
+            "date": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "type": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "locale": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "locale_name": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "description": {
+                "tipo_dato": "String",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            },
+            "transferred": {
+                "tipo_dato": "Boolean",
+                "nulos_conteo": 0,
+                "nulos_porcentaje": 0.0
+            }
+        }
+    }
+}
