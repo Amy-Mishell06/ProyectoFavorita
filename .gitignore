@@ -7,3 +7,21 @@ __pycache__/
 *.log
 *.parquet
 *.csv
+
+# Airflow
+airflow/airflow.db
+airflow/*.bak
+airflow/airflow.cfg
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Logs
+logs/
+
+# Data pesada
+data/
