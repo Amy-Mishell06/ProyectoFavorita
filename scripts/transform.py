@@ -1,57 +1,69 @@
-import pandas as pd
+import polars as pl
 
 
 def transformar_datos(datos):
 
-    train = datos["train"].copy()
-    stores = datos["stores"].copy()
-    transactions = datos["transactions"].copy()
-    oil = datos["oil"].copy()
-    holidays = datos["holidays"].copy()
-
+    train = datos["train"]
+    stores = datos["stores"]
+    transactions = datos["transactions"]
+    oil = datos["oil"]
+    holidays = datos["holidays"]
 
     print("Iniciando transformación...")
 
 
     # Convertir fechas
-    train["date"] = pd.to_datetime(train["date"])
-    transactions["date"] = pd.to_datetime(transactions["date"])
-    oil["date"] = pd.to_datetime(oil["date"])
-    holidays["date"] = pd.to_datetime(holidays["date"])
+    train = train.with_columns(
+        pl.col("date").str.to_date()
+    )
+
+    transactions = transactions.with_columns(
+        pl.col("date").str.to_date()
+    )
+
+    oil = oil.with_columns(
+        pl.col("date").str.to_date()
+    )
+
+    holidays = holidays.with_columns(
+        pl.col("date").str.to_date()
+    )
 
 
-    # Crear variables de fecha
-    train["year"] = train["date"].dt.year
-    train["month"] = train["date"].dt.month
-    train["weekday"] = train["date"].dt.day_name()
+    # Variables temporales
+    train = train.with_columns(
+        pl.col("date").dt.year().alias("year"),
+        pl.col("date").dt.month().alias("month"),
+        pl.col("date").dt.strftime("%A").alias("weekday")
+    )
 
 
-    # Unir información de tiendas
-    df = train.merge(
+    # Join tiendas
+    df = train.join(
         stores,
         on="store_nbr",
         how="left"
     )
 
 
-    # Unir transacciones
-    df = df.merge(
+    # Join transacciones
+    df = df.join(
         transactions,
         on=["date", "store_nbr"],
         how="left"
     )
 
 
-    # Unir petróleo
-    df = df.merge(
+    # Join petróleo
+    df = df.join(
         oil,
         on="date",
         how="left"
     )
 
 
-    # Unir feriados
-    df = df.merge(
+    # Join feriados
+    df = df.join(
         holidays,
         on="date",
         how="left"
@@ -59,10 +71,12 @@ def transformar_datos(datos):
 
 
     print("Transformación completada")
-    print("Dataset final:", df.shape)
+    print("Dataset final:")
+    print(df.shape)
 
 
     return df
+
 
 
 if __name__ == "__main__":
@@ -73,14 +87,15 @@ if __name__ == "__main__":
 
     df_final = transformar_datos(datos)
 
+
     print(df_final.head())
 
 
-# Guardar dataset transformado
-df_final.to_csv(
-    "data/processed/favorita_clean.csv",
-    index=False
-)
+    df_final.write_csv(
+        "data/processed/favorita_clean.csv"
+    )
 
-print("Archivo generado:")
-print("data/processed/favorita_clean.csv")
+
+    print(
+        "Archivo generado: data/processed/favorita_clean.csv"
+    )
