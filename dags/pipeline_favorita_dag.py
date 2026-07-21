@@ -74,7 +74,6 @@ with DAG(
         bash_command=f"cd {PROJECT_DIR} && {VENV_PYTHON} scripts/exportar_postgres.py",
     )
 
-    # -----------------------------------------------------
     # Definición del orden de ejecución (dependencias)
-    # -----------------------------------------------------
+
     tarea_carga_eda >> tarea_limpieza >> tarea_consolidacion >> tarea_eda_profundo >> tarea_exportar
