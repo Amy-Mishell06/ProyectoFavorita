@@ -1,0 +1,13 @@
+{
+  "proyecto": "ProyectoFavorita - Pipeline de Análisis de Datos Corporación Favorita",
+  "version_dataset": "1.0.0",
+  "fecha_actualizacion": "2026-07-20",
+  "fuente": "Kaggle - Store Sales Time Series Forecasting",
+  "descripcion_cambio": "Carga inicial de los 5 datasets (train, stores, transactions, oil, holidays_events), limpieza e imputación de nulos, consolidación en dataset único y exportación a PostgreSQL para consumo en Power BI.",
+  "registros_procesados": 3000888,
+  "responsables": [
+    "Amy Díaz",
+    "Jonathan Caiza",
+    "Anthony Ledesma"
+  ]
+}
