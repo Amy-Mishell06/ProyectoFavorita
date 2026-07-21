@@ -1,28 +1,23 @@
 import pandas as pd
 import psycopg2
-from sqlalchemy import create_engine
+import os
 
 
 CSV_PATH = "data/processed/favorita_clean.csv"
 
 
-DB_CONFIG = {
-    "host": "localhost",
-    "database": "favorita_dw",
-    "user": "favorita_user",
-    "password": "favorita123",
-    "port": "5432"
-}
+DB_HOST = "localhost"
+DB_PORT = "5432"
+DB_NAME = "favorita_dw"
+DB_USER = "favorita_user"
+DB_PASSWORD = "favorita123"
 
 
 def cargar_postgres():
 
     print("Leyendo archivo procesado...")
 
-    df = pd.read_csv(
-        CSV_PATH,
-        low_memory=False
-    )
+    df = pd.read_csv(CSV_PATH)
 
     print("Registros cargados:", df.shape)
 
@@ -30,41 +25,97 @@ def cargar_postgres():
     print("Conectando a PostgreSQL...")
 
 
-    conexion = psycopg2.connect(
-        **DB_CONFIG
+    conn = psycopg2.connect(
+        host=DB_HOST,
+        port=DB_PORT,
+        database=DB_NAME,
+        user=DB_USER,
+        password=DB_PASSWORD
     )
 
 
-    print("Cargando datos en PostgreSQL...")
+    cursor = conn.cursor()
 
 
-    # Crear tabla usando SQLAlchemy
-    engine = create_engine(
-        "postgresql+psycopg2://"
-        f"{DB_CONFIG['user']}:"
-        f"{DB_CONFIG['password']}@"
-        f"{DB_CONFIG['host']}:"
-        f"{DB_CONFIG['port']}/"
-        f"{DB_CONFIG['database']}"
-    )
+    print("Eliminando tabla anterior...")
 
 
-    df.to_sql(
-        name="fact_sales",
-        con=engine,
-        if_exists="replace",
+    cursor.execute("""
+        DROP TABLE IF EXISTS fact_sales;
+    """)
+
+
+    print("Creando tabla fact_sales...")
+
+
+    cursor.execute("""
+        CREATE TABLE fact_sales (
+            id BIGINT,
+            date TEXT,
+            store_nbr BIGINT,
+            family TEXT,
+            sales FLOAT,
+            onpromotion BIGINT,
+            year BIGINT,
+            month BIGINT,
+            weekday TEXT,
+            city TEXT,
+            state TEXT,
+            type_x TEXT,
+            cluster BIGINT,
+            transactions FLOAT,
+            dcoilwtico FLOAT,
+            type_y TEXT,
+            locale TEXT,
+            locale_name TEXT,
+            description TEXT,
+            transferred BOOLEAN
+        );
+    """)
+
+
+    print("Preparando archivo temporal...")
+
+
+    temp_file = "/tmp/fact_sales.csv"
+
+
+    df.to_csv(
+        temp_file,
         index=False,
-        chunksize=50000,
-        method="multi"
+        header=False
     )
 
 
-    conexion.close()
+    print("Cargando datos con COPY...")
 
 
+    with open(temp_file, "r") as f:
+
+        cursor.copy_expert(
+            """
+            COPY fact_sales
+            FROM STDIN
+            WITH CSV
+            """,
+            f
+        )
+
+
+    conn.commit()
+
+
+    cursor.close()
+    conn.close()
+
+
+    os.remove(temp_file)
+
+
+    print("================================")
     print("Carga completada correctamente")
+    print("================================")
 
 
 if __name__ == "__main__":
-
     cargar_postgres()

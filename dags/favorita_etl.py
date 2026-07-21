@@ -42,14 +42,13 @@ with DAG(
     )
 
 
-    tarea_carga = BashOperator(
+    carga_postgresql = BashOperator(
         task_id="carga_postgresql",
-        bash_command=f"""
-        cd {PROJECT_PATH}
-        source venv/bin/activate
+        bash_command="""
+        cd /home/jonathan/ProyectoFavorita &&
         python scripts/load.py
         """
     )
 
 
-    tarea_ingesta >> tarea_transformacion >> tarea_carga
+    tarea_ingesta >> tarea_transformacion >> carga_postgresql
