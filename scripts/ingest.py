@@ -1,4 +1,4 @@
-import pandas as pd
+import polars as pl
 import os
 
 
@@ -22,9 +22,17 @@ def cargar_datos():
         ruta = os.path.join(DATA_PATH, archivo)
 
         if os.path.exists(ruta):
+
             print(f"Cargando {archivo}...")
-            datos[nombre] = pd.read_csv(ruta)
-            print(f"{nombre}: {datos[nombre].shape}")
+
+            datos[nombre] = pl.read_csv(
+                ruta,
+                low_memory=True
+            )
+
+            print(
+                f"{nombre}: {datos[nombre].shape}"
+            )
 
         else:
             print(f"No existe: {ruta}")
@@ -32,10 +40,16 @@ def cargar_datos():
     return datos
 
 
+
 if __name__ == "__main__":
 
     datasets = cargar_datos()
 
     print("\nArchivos cargados:")
-    for nombre in datasets:
-        print("-", nombre)
+
+    for nombre, df in datasets.items():
+        print(
+            "-",
+            nombre,
+            df.shape
+        )
