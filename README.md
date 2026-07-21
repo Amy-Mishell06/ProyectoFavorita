@@ -156,7 +156,12 @@ carga_y_eda_inicial >> limpiar_datos >> consolidar_datasets >> eda_profundo >> e
 
 **Etapa 6 — Exportación:** el dataset consolidado y las tablas de estadísticos se exportan a PostgreSQL (`favorita_db`).
 
-_(Insertar aquí las capturas de la vista Graph de Airflow mostrando las 5 tareas en verde/success)_
+<img width="1918" height="1056" alt="image" src="https://github.com/user-attachments/assets/15f075ae-62f2-4606-b824-fac6507113e2" />
+<img width="1918" height="1045" alt="image" src="https://github.com/user-attachments/assets/73ec2658-9c9a-4343-8876-0fd6f620b906" />
+<img width="1918" height="1050" alt="image" src="https://github.com/user-attachments/assets/0c5edba3-3050-4d7f-9008-75e36dfeea8f" />
+
+
+
 
 ---
 
@@ -173,7 +178,11 @@ _(Insertar aquí las capturas de la vista Graph de Airflow mostrando las 5 tarea
 | Filas duplicadas detectadas (todos los archivos) | 0 |
 | Registros en el dataset consolidado final | 3,000,888 |
 | Registros exportados a PostgreSQL | 3,000,888 |
-| Tiempo total de ejecución del pipeline (test local) | ~4 segundos (ejecución con datos ya en caché de Polars) |
+| Total de tareas del DAG | 5 (todas tipo `BashOperator`) |
+| Tiempo real de ejecución del pipeline completo | ~4 segundos (medido en `airflow dags test`, desde la Tarea 1 hasta la Tarea 5) |
+| Estado de la última ejecución | Success (5/5 tareas completadas) |
+
+> **Nota:** la UI de Airflow muestra "Mean Run Duration: 1d02:04:00" para esta corrida, pero ese valor refleja el tiempo transcurrido desde la fecha lógica de ejecución (`data_interval`) hasta el momento de la consulta, no el tiempo real de procesamiento. El tiempo real de ejecución del pipeline, medido directamente en los logs de `airflow dags test`, fue de aproximadamente 4 segundos.
 
 
 
