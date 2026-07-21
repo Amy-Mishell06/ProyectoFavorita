@@ -9,9 +9,9 @@ from airflow import DAG
 from airflow.operators.bash import BashOperator
 from datetime import datetime, timedelta
 
-# -----------------------------------------------------
+
 # Configuración por defecto de las tareas
-# -----------------------------------------------------
+
 default_args = {
     "owner": "equipo_favorita",
     "depends_on_past": False,
@@ -27,9 +27,9 @@ DAGS_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.abspath(os.path.join(DAGS_DIR, ".."))  
 VENV_PYTHON = os.path.join(PROJECT_DIR, "venv", "bin", "python")
 
-# -----------------------------------------------------
+
 # Definición del DAG
-# -----------------------------------------------------
+
 with DAG(
     dag_id="pipeline_favorita",
     default_args=default_args,
