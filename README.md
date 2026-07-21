@@ -107,7 +107,12 @@ carga_y_eda_inicial >> limpiar_datos >> consolidar_datasets >> eda_profundo >> e
 
 **Etapa 6 — Exportación:** el dataset consolidado y las tablas de estadísticos se exportan a PostgreSQL (`favorita_db`).
 
-_(Insertar aquí las capturas de la vista Graph de Airflow mostrando las 5 tareas en verde/success)_
+<img width="1918" height="1056" alt="image" src="https://github.com/user-attachments/assets/15f075ae-62f2-4606-b824-fac6507113e2" />
+<img width="1918" height="1045" alt="image" src="https://github.com/user-attachments/assets/73ec2658-9c9a-4343-8876-0fd6f620b906" />
+<img width="1918" height="1050" alt="image" src="https://github.com/user-attachments/assets/0c5edba3-3050-4d7f-9008-75e36dfeea8f" />
+
+
+
 
 ---
 
